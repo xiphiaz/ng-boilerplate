@@ -76,9 +76,14 @@ module.exports = function ( grunt ) {
     },
 
     /**
-     * Any non-core modules (e.g. less) must be enabled here to be used.
+     * TODO: implement me!
+     * Tasks to disable during the build. These must be task names, not ngbp
+     * module names. For example, Less defines two tasks, one to run during the
+     * build as `less:build` and during the compile as `less:compile`. Either
+     * of these can be listed to disable it, or `less` can be listed to disable
+     * all of them.
      */
-    modules: [
+    disabled: [
     ],
 
     /**

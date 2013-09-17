@@ -1,4 +1,4 @@
-var helpers = require( '../helpers.js' );
+var helpers = require( '../../util/helpers.js' );
 
 module.exports = function ( grunt ) {
   var taskName = 'html2js';

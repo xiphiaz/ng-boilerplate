@@ -4,7 +4,7 @@ var merge = require( 'deepmerge' );
  * This is what Grunt will run automatically when the file is loaded.
  */
 module.exports = function ( grunt ) {
-  var userConfig, ngbpConfig;
+  var userConfig, ngbpConfig, optionalModules;
 
   /**
    * Load in the configuration defined by the user in Gruntfile.js.
@@ -43,9 +43,18 @@ module.exports = function ( grunt ) {
   grunt.initConfig( merge( ngbpConfig, userConfig ) );
 
   grunt.verbose.subhead( "Loading ngBoilerplate core modules..." );
-  grunt.loadTasks( "tasks/core" );
+  grunt.loadTasks( "tasks/modules/core" );
 
-  // TODO: load in all enabled optional modules
+  // load in all enabled optional modules
+  grunt.verbose.subhead( "Loading ngBoilerplate optional modules..." );
+  optionalModules = grunt.config.get( 'pkg.ngbpModules' );
+  if ( optionalModules && optionalModules.length > 0 ) {
+    optionalModules.forEach( function ( mod ) {
+      grunt.loadTasks( 'tasks/modules/' + mod );
+    });
+  } else {
+    grunt.verbose.writeln( "No optional modules enabled." );
+  }
 
   // Set the default task
   grunt.task.registerTask( 'default', [ 'build', 'compile' ] );
