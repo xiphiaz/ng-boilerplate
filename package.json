@@ -13,6 +13,9 @@
     "url": "git@github.com:joshdmiller/ng-boilerplate.git"
   },
   "dependencies": {},
+  "ngbTasks": [
+    "less"
+  ],
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-recess": "~0.3.0",
