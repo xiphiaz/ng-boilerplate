@@ -2,7 +2,7 @@
  * This file/module contains all configuration for the build process.
  */
 module.exports = function ( grunt ) {
-  grunt.initConfig({
+  grunt.config.init({
     /**
      * The `build_dir` folder is where our projects are compiled during
      * development and the `compile_dir` folder is where our app resides once it's
@@ -76,6 +76,12 @@ module.exports = function ( grunt ) {
     },
 
     /**
+     * Any non-core modules (e.g. less) must be enabled here to be used.
+     */
+    modules: [
+    ],
+
+    /**
      * The injection property allows you to have grunt tasks that you add
      * yourself run at specific points during the build. This can be useful for
      * tasks that may impact how ngBoilerplate will operate. For example, if
@@ -85,11 +91,11 @@ module.exports = function ( grunt ) {
      *
      * See http://github.com/ngbp/ng-boilerplate/wiki/Injection
      */
-    injection: {
+    injections: {
       build: {
-        pre: {
-          // mytask: 50
-        }
+        pre: [
+          // { priority: 50, task: 'myTask:subtask' }
+        ]
       }
     }
   });
@@ -111,6 +117,7 @@ module.exports = function ( grunt ) {
   /**
    * Load ngBoilerplate
    */
-  grunt.loadTasks( 'tasks' );
+  grunt.verbose.subhead( "Starting ngBoilerplate..." );
+  grunt.loadTasks( "tasks" );
 };
 
