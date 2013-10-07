@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+html[ng-app="ngBoilerplate" ng-controller="AppCtrl"]{
+    head{
+        title[ng-bind="pageTitle"];
+        //social media tags
+        meta[name="twitter:card" content="summary"];
+        meta[name="twitter:site" content="@joshdmiller"];
+        meta[name="twitter:title" content="ngBoilerplate"];
+        meta[name="twitter:description" content="Non-Trivial AngularJS Made Easy: Everything you need to kickstart AngularJS projects: a best-practice directory structure, an intelligent build system, and the best web design libraries around."];
+        meta[name="twitter:creator" content="@joshdmiller"];
+        meta[name="twitter:image:src" content="https://a248.e.akamai.net/assets.github.com/images/modules/logos_page/Octocat.png?1366128846"];
+        meta[property="og:title" content="ngBoilerplate"];
+        meta[property="og:type" content="website"];
+        meta[property="og:url" content="http://bit.ly/ngBoilerplate"];
+        meta[property="og:image" content="https://a248.e.akamai.net/assets.github.com/images/modules/logos_page/Octocat.png?1366128846"];
+        meta[property="og:description" content="Non-Trivial AngularJS Made Easy: Everything you need to kickstart AngularJS projects: a best-practice directory structure, an intelligent build system, and the best web design libraries around."];
+
+        //font awesome from BootstrapCDN
+        link[href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"];
+
+        // compiled CSS
+        <% styles.forEach( function ( file ) { %>
+            link[rel="stylesheet" type="text/css" href="<%= file %>"];
+        <% }); %>
+
+        // compiled JavaScript
+        <% scripts.forEach( function ( file ) { %>
+            script[type="text/javascript" src="<%= file %>"];
+        <% }); %>
+
+        //it's stupid to have to load it here, but this is for the +1 button
+        script[type="text/javascript" src="https://apis.google.com/js/plusone.js"]{
+            { "parsetags": "explicit" }
+        } //not sure if this will work with .wtml
+    }
+    body{
+        div.container{
+            div.masthead{
+                h3.muted(ng-boilerplate){
+                    small>a[href="http://github.com/joshdmiller/ng-boilerplate/blob/master/CHANGELOG.md"](v<%= version %>);
+                }
+                div.navbar{
+                    div.navbar-inner{
+                        ul.nav{
+                            li[ui-route="/home" ng-class="{active:$uiRoute}"]{
+                                a[href="#/home"]{
+                                    span(Home);
+                                    i.icon-home;
+                                }
+                            }
+                            li[ui-route="/about" ng-class="{active:$uiRoute}"]{
+                                a[href="#/about"]{
+                                    span(What is it?);
+                                    i.icon-info-sign;
+                                }
+                            }
+                            li{
+                                a[href="https://github.com/joshdmiller/ng-boilerplate#readme"]{
+                                    span(Read the Docs);
+                                    i.icon-book;
+                                }
+                            }
+                            li{
+                                a[href="https://github.com/joshdmiller/ng-boilerplate"]{
+                                    span(Github);
+                                    i.icon-github-alt;
+                                }
+                            }
+                            li{
+                                a[href="https://github.com/joshdmiller/ng-boilerplate/issues"]{
+                                    span(Support);
+                                    i.icon-comments;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        div.container[ui-view="main"];
+
+        footer.footer>div.container>div.footer-inner{
+            ul.social{
+                li>a[target="_blank" href="http://gplus.to/joshdmiller"]>i.icon-google-plus-sign;
+                li>a[target="_blank" href="http://twitter.com/joshdmiller"]>i.icon-twitter-sign;
+                li>a[target="_blank" href="http://linkedin.com/in/joshdmiller"]>i.icon-linkedin-sign;
+                li>a[target="_blank" href="http://github.com/joshdmiller/ng-boilerplate"]>i.icon-github-sign;
+            }
+
+            p{
+                span((c) 2013 Josh David Miller);
+                a[href="http://github.com/joshdmiller/ng-boilerplate/fork_select"](Fork this);
+                span(to kickstart your next project.);
+                br;
+                span(ng-boilerplate is based on);
+                a[href="http://www.angularjs.org"](AngularJS);
+                a[href="http://getbootstrap.com"](Bootstrap);
+                a[href="http://angular-ui.github.com/bootstrap"](UI Bootstrap);
+                span(and);
+                a[href="http://fortawesome.github.com/Font-Awesome"](Font Awesome);
+            }
+        }
+    }
+}
